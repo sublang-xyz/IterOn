@@ -1,6 +1,3 @@
-<!-- SPDX-License-Identifier: CC-BY-SA-4.0 -->
-<!-- SPDX-FileCopyrightText: 2025 SubLang contributors <https://github.com/sublang-xyz> -->
-
 # TC-INIT-001: Init Creates Structure
 
 ## Description
@@ -58,6 +55,6 @@ find specs -maxdepth 1 -type d | grep -E "specs/(decisions|iterations|user|dev|t
 # Expected: 5
 
 # Check that initial files exist with proper headers
-grep -rE "^<!-- SPDX-License-Identifier: CC-BY-SA-4\.0 -->$" specs/ | wc -l
+grep -rE "^<!-- SPDX-License-Identifier:" specs/ | wc -l
 # Expected: >= 4
 ```

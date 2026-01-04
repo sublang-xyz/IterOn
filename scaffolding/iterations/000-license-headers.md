@@ -1,7 +1,4 @@
-<!-- SPDX-License-Identifier: CC-BY-SA-4.0 -->
-<!-- SPDX-FileCopyrightText: 2025 SubLang contributors <https://github.com/sublang-xyz> -->
-
-# ITER-0000: License Headers
+# ITER-000: License Headers
 
 ## Goal
 
@@ -18,7 +15,7 @@ Ensure all source files have proper SPDX license headers based on the project's 
 1. **Detect project license**
    - Check for LICENSE file at project root
    - Parse package.json `license` field as fallback
-   - Map to SPDX identifier (e.g., Apache-2.0, MIT, GPL-3.0)
+   - Map to SPDX identifier
 
 2. **Scan source files**
    - Find all `.ts`, `.js`, `.tsx`, `.jsx` files in src/
