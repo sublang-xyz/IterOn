@@ -44,4 +44,3 @@ Add SPDX headers to all source files.
 
 - All source files have SPDX-FileCopyrightText header
 - Files have SPDX-License-Identifier if LICENSE exists
-- Idempotent (running twice produces no changes)

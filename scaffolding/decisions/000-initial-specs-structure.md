@@ -38,10 +38,11 @@ Subdirectories optional for user/, dev/, and tests/.
 | Path | Content |
 | ---- | ------- |
 | `decisions/000-initial-specs-structure.md` | This DR |
-| `iterations/000-license-headers.md` | Initial IR |
-| `user/meta-ears-format.md` | EARS syntax guide |
-| `dev/rules.md` | Commit message format |
-| `tests/consistent-structure.md` | Structure verification |
+| `iterations/000-spdx-headers.md` | Initial IR |
+| `user/meta.md` | EARS syntax guide |
+| `dev/rules.md` | Development rules |
+| `tests/spec-format.md` | Spec format verification |
+| `tests/spdx-headers.md` | SPDX headers verification |
 
 ## Consequences
 
