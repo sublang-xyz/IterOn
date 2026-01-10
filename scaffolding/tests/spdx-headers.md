@@ -2,16 +2,11 @@
 
 ## SPDX-001: Copyright Header Presence
 
-**Given** a git-tracked file with comment syntax (excludes JSON, binaries, vendor)
-**When** checking its first comment block (after shebang if present)
-**Then** it shall contain `SPDX-FileCopyrightText`
+While the file is git-tracked with comment syntax (excludes JSON, binaries, vendor), when checking its first comment block (after shebang if present), the file shall contain `SPDX-FileCopyrightText`.
 
 ## SPDX-002: License Header Presence
 
-**Given** a git-tracked file with comment syntax (excludes JSON, binaries, vendor)
-**And** one or more license files exist at project root
-**When** checking its first comment block (after shebang if present)
-**Then** it shall contain `SPDX-License-Identifier`
+While the file is git-tracked with comment syntax (excludes JSON, binaries, vendor) and one or more license files exist at project root, when checking its first comment block (after shebang if present), the file shall contain `SPDX-License-Identifier`.
 
 ### License File Detection
 

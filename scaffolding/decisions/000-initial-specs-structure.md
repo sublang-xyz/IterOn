@@ -27,23 +27,24 @@ specs/
 | --------- | ------- | ------ |
 | decisions/ | [ADR](https://adr.github.io/) (Architectural Decision Record) | `NNN-<kebab-case-title>.md` |
 | iterations/ | Goal, deliverables, tasks, verification | `NNN-<kebab-case-title>.md` |
-| user/ | GEARS | `<kebab-case-component>.md` |
+| user/ | [GEARS](https://sublang.xyz/ref/gears-ai-ready-spec-syntax) | `<kebab-case-component>.md` |
 | dev/ | GEARS | `<kebab-case-component>.md` |
-| tests/ | Test cases by feature | `<kebab-case-feature>.md` |
+| tests/ | GEARS | `<kebab-case-feature>.md` |
 
-GEARS (Generalized [EARS](https://alistairmavin.com/ears/)) extends EARS:
-- Any `<subject>` (system, component, agent, artifact, etc.) instead of only `<system>`
-- Patterns may be combined: `<clauses>` the `<subject>` shall `<action>`
+GEARS syntax pattern:
 
-| Pattern | Clause |
-| ------- | ------ |
-| Ubiquitous | _(none)_ |
-| Event-driven | When `<trigger>`, |
-| State-driven | While `<state>`, |
-| Optional | Where `<feature>`, |
-| Unwanted | If `<trigger>`, then |
+```text
+[Where <static precondition(s)>] [While <stateful precondition(s)>] [When <trigger>] The <subject> shall <behavior>.
+```
 
-Test cases use Given/When/Then (GWT), mapping to State + Event patterns.
+| Clause | Purpose |
+| ------ | ------- |
+| Where | Static preconditions (features, config) |
+| While | Stateful preconditions (runtime state) |
+| When | Trigger event (at most one) |
+| shall | Required behavior |
+
+Test cases map Given-When-Then: Given → Where+While, When → When, Then → shall.
 
 Subdirectories optional for user/, dev/, and tests/.
 

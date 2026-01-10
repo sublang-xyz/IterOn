@@ -1,6 +1,6 @@
 # GIT: Git Workflow
 
-This component defines git workflow rules for the project.
+This component defines git workflow rules for the project, per [DR-000](../decisions/000-initial-specs-structure.md#dr-000-initial-specs-structure).
 
 ## Commits
 
@@ -18,6 +18,6 @@ The commit body shall explain what/why (not how), wrap at 72 chars, and use bull
 
 ### GIT-004
 
-When AI assists in authoring a commit, the message shall include a `Co-authored-by` trailer in the format `<model> (<role>) <<email>>`, where `<role>` is one of `coder|reviewer|maintainer`.
+When AI assists in authoring a commit, the message shall include a `Co-authored-by` trailer in the format `<model> (<role>) <email>`, where `<role>` is one of `coder|reviewer|maintainer`.
 
 Example: `Co-authored-by: Claude Opus 4.5 (coder) <noreply@anthropic.com>`

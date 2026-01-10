@@ -32,7 +32,7 @@ Each test case ID shall follow `<FEAT>-NNN` format (e.g., SPDX-001, AUTH-012) as
 
 ### STYLE-007
 
-Each test case shall use Given/When/Then (GWT) format per [META-002](../user/meta.md#meta-002) and be self-contained.
+Each test case shall use GEARS syntax per [META-002](../user/meta.md#meta-002) and be self-contained.
 
 ### STYLE-008
 
@@ -42,7 +42,7 @@ Test case IDs shall not be modified once committed; new cases shall use higher I
 
 ### STYLE-009
 
-All cross-references shall use relative links with anchors (e.g., `[STYLE-001](style.md#style-001)`).
+Cross-references to specific items shall use relative links with anchors (e.g., `[STYLE-001](style.md#style-001)`).
 
 ### STYLE-010
 
