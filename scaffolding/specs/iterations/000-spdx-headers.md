@@ -4,7 +4,14 @@
 
 Add SPDX headers to all source files.
 
-Source files: git-tracked files with comment syntax (excludes JSON, binaries, vendor). Headers go in the first comment block, after shebang if present.
+Source files: git-tracked files with comment syntax. Excludes:
+
+- No comment syntax: JSON, binaries
+- Config: `.gitignore`, `.editorconfig`, `**/settings.json`, lock files
+- Generated/vendor: `dist/`, `node_modules/`, vendor directories
+- License/legal documents
+
+Headers go in the first comment block, after shebang if present.
 
 ## Deliverables
 
