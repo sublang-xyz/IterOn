@@ -1,3 +1,6 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- SPDX-FileCopyrightText: 2025 SubLang International <https://github.com/sublang-xyz> -->
+
 # GIT: Git Workflow
 
 This component defines git workflow rules for the project, per [DR-000](../decisions/000-initial-specs-structure.md#dr-000-initial-specs-structure).

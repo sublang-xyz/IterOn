@@ -1,3 +1,6 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- SPDX-FileCopyrightText: 2025 SubLang International <https://github.com/sublang-xyz> -->
+
 # STYLE: Authoring Conventions
 
 This component defines authoring conventions, per [DR-000](../decisions/000-initial-specs-structure.md#dr-000-initial-specs-structure).
@@ -41,3 +44,23 @@ Specs shall cite decisions when deriving from them.
 ### STYLE-008
 
 Specs shall not cite iterations.
+
+## SPDX Headers
+
+### STYLE-009
+
+While a file is git-tracked or `git add`-able with comment syntax, when adding SPDX headers, the file shall include both `SPDX-License-Identifier` and `SPDX-FileCopyrightText` in the first comment block (after shebang if present).
+
+### STYLE-010
+
+Source code files (TypeScript, JavaScript, specs) shall use Apache-2.0 headers:
+
+```typescript
+// SPDX-License-Identifier: Apache-2.0
+// SPDX-FileCopyrightText: 2025 SubLang International <https://github.com/sublang-xyz>
+```
+
+```markdown
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- SPDX-FileCopyrightText: 2025 SubLang International <https://github.com/sublang-xyz> -->
+```

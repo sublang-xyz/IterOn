@@ -1,3 +1,6 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- SPDX-FileCopyrightText: 2025 SubLang International <https://github.com/sublang-xyz> -->
+
 # SPDX: SPDX Headers
 
 ## SPDX-001: Copyright Header Presence

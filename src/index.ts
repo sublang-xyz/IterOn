@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // SPDX-License-Identifier: Apache-2.0
-// SPDX-FileCopyrightText: 2025 SubLang contributors <https://github.com/sublang-xyz>
+// SPDX-FileCopyrightText: 2025 SubLang International <https://github.com/sublang-xyz>
 
 import { Command } from 'commander';
 import { initCommand } from './commands/init.js';
