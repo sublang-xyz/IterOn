@@ -10,7 +10,7 @@ const program = new Command();
 program
   .name('iteron')
   .description('Delegate dev loops to Claude Code + Codex CLI. Iterates for hours. No API keys.')
-  .version('0.1.0');
+  .version('0.1.1');
 
 program
   .command('init')
