@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // SPDX-License-Identifier: Apache-2.0
-// SPDX-FileCopyrightText: 2025 SubLang International <https://www.sublang.xyz>
+// SPDX-FileCopyrightText: 2025 SubLang International <https://www.sublang.ai>
 
 import { Command } from 'commander';
 import { scaffoldCommand } from './commands/scaffold.js';

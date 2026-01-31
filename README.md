@@ -1,5 +1,5 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
-<!-- SPDX-FileCopyrightText: 2025 SubLang International <https://www.sublang.xyz> -->
+<!-- SPDX-FileCopyrightText: 2025 SubLang International <https://www.sublang.ai> -->
 
 # <img src="assets/iteron.svg" alt="iteron" width="128" height="128">
 
