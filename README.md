@@ -11,7 +11,7 @@ Delegate dev loops to Claude Code, Codex CLI, or any AI coder. Runs autonomously
 
 > **Status:**
 >
-> - [x] Stage 1 - spec scaffolding ready. Get started to adopt the [GEARS](https://sublang.xyz/ref/gears-ai-ready-spec-syntax), the AI-ready spec syntax, for your projects.
+> - [x] Stage 1 - spec scaffolding ready. Get started to adopt the [GEARS](https://sublang.ai/ref/gears-ai-ready-spec-syntax), the AI-ready spec syntax, for your projects.
 
 ## Quick Start
 
