@@ -1,11 +1,11 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
-<!-- SPDX-FileCopyrightText: 2025 SubLang International <https://www.sublang.ai> -->
+<!-- SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.ai> -->
 
 # DR-001: Sandbox Architecture for CLI Coding Agents
 
 ## Status
 
-Proposed
+Accepted
 
 ## Context
 
