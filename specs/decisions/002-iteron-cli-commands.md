@@ -71,7 +71,7 @@ Open a workspace with an agent or shell. Creates workspace directory and tmux se
 **Argument interpretation**:
 
 - `iteron open` — Shell in home directory (`~`)
-- `iteron open myproject` — Shell in `~/myproject` workspace (if not a known agent name)
+- `iteron open myproject` — Shell in `~/myproject` workspace (if no agent name)
 - `iteron open claude-code` — Claude Code agent in home directory (`~`)
 - `iteron open claude-code myproject` — Claude Code agent in `~/myproject` workspace
 - `iteron open claude-code myproject -- --resume` — Pass `--resume` to claude-code

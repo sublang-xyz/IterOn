@@ -25,11 +25,11 @@ Memory leaks are documented in Claude Code (120 GB in v1.0.53 \[11]; 7.5 GB regr
 
 ### 2. Tmux mapping
 
-Each agent runs inside a **named tmux session within the container**. IterOn provides a host-side command (`iteron attach <agent>`) that wraps `podman exec -it <container> tmux attach -t <agent>`, binding the host terminal to the in-container tmux session. This gives:
+Each agent runs inside a **named tmux session within the container**. IterOn provides a host-side command that wraps `podman exec -it <container> tmux new-session -A -s <session> -c <path> <command>`, creating a new tmux session or attaching to an existing one. This gives:
 
 - **Background persistence** — if the `exec` connection drops, the in-container tmux keeps the agent alive; the user reattaches without losing state.
 - **Cross-platform** — works on macOS, Linux, and Windows (WSL2). Shared tmux sockets across the container boundary fail on non-Linux hosts due to the VM layer \[15].
-- **Multi-agent observation** — a host-side tmux session can open one pane per agent, each running `iteron attach`.
+- **Multi-agent observation** — a host-side tmux session can open one pane per agent.
 
 ### 3. Authentication
 
@@ -57,7 +57,7 @@ Each agent runs inside a **named tmux session within the container**. IterOn pro
 | Image | Same OCI image | Same via ECR |
 | Isolation | Rootless namespace/cgroup | Firecracker microVM |
 | Storage | Podman volumes | EFS mount |
-| Interaction | `iteron attach` via `podman exec` | SSM / `ecs execute-command` |
+| Interaction | `podman exec` | SSM / `ecs execute-command` |
 | Credentials | Local `.env` or proxy | Secrets Manager + proxy |
 
 ## Consequences
@@ -68,7 +68,7 @@ Each agent runs inside a **named tmux session within the container**. IterOn pro
 - **Lighter footprint** — no idle daemon process. IterOn auto-starts `podman machine` on sandbox launch and stops it when idle, reclaiming VM memory.
 - **Full agent autonomy** — unrestricted shell, filesystem, and network access within the container. No permission prompts.
 - **Portable security** — same OCI image locally and on Fargate; Firecracker isolation automatic in production.
-- **Tmux persistence** — in-container tmux survives connection drops; users inspect agents at any time via `iteron attach`.
+- **Tmux persistence** — in-container tmux survives connection drops; users inspect agents at any time.
 - **Subscription auth friction** — community reports indicate Anthropic blocks subscription tokens from proxies \[23]; API keys required for proxy-based credential management.
 
 ### Rejected alternatives
