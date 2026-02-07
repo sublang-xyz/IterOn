@@ -25,7 +25,7 @@ specs/
 
 | Directory | Format | Naming |
 | --------- | ------- | ------ |
-| decisions/ | [ADR](https://adr.github.io/) (Architectural Decision Record) | `NNN-<kebab-case-title>.md` |
+| decisions/ | [ADR](https://github.com/npryce/adr-tools) (Architectural Decision Record) | `NNN-<kebab-case-title>.md` |
 | iterations/ | Goal, deliverables, tasks, verification | `NNN-<kebab-case-title>.md` |
 
 ### Specs

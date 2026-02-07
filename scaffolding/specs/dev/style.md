@@ -24,24 +24,30 @@ Each item shall use GEARS syntax per [META-001](../user/meta.md#meta-001) and be
 
 Item IDs shall not be modified once committed; new items shall use higher IDs.
 
-## Cross-References
+## Record Format
 
 ### STYLE-005
 
-Cross-references to specific items shall use relative links with anchors (e.g., `[STYLE-001](style.md#style-001)`).
+Decision records shall follow [ADR](https://github.com/npryce/adr-tools) format with Status, Context, Decision, and Consequences sections.
 
 ### STYLE-006
 
-Iterations shall cite relevant specs.
+Decision records shall cite all external references with numbered markers (e.g., `[1]`) linked to specific URLs in a `## References` section that has no uncited entries.
 
 ### STYLE-007
 
-Specs shall cite decisions when deriving from them.
+Iteration records shall include Goal, Deliverables, Tasks, and Verification sections.
+
+## Cross-References
 
 ### STYLE-008
 
-Specs shall not cite iterations.
+Cross-references to specific items shall use relative links with anchors (e.g., `[STYLE-001](style.md#style-001)`).
 
 ### STYLE-009
+
+Iterations shall not be cited by decisions or specs.
+
+### STYLE-010
 
 Test specs shall not be cited by other specs.
