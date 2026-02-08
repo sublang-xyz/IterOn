@@ -82,7 +82,7 @@ Per [DR-002 §3](../decisions/002-iteron-cli-commands.md#3-iteron-stop):
 ```toml
 [container]
 name = "iteron-sandbox"
-image = "ghcr.io/sublang/iteron-sandbox:latest"
+image = "ghcr.io/sublang-dev/iteron-sandbox:latest"
 memory = "16g"
 
 [agents.claude-code]

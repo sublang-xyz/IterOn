@@ -10,7 +10,7 @@ export const CONFIG_DIR = process.env.ITERON_CONFIG_DIR ?? join(homedir(), '.ite
 export const CONFIG_PATH = join(CONFIG_DIR, 'config.toml');
 export const ENV_PATH = join(CONFIG_DIR, '.env');
 
-export const DEFAULT_IMAGE = 'ghcr.io/sublang/iteron-sandbox:latest';
+export const DEFAULT_IMAGE = 'ghcr.io/sublang-dev/iteron-sandbox:latest';
 export const DEFAULT_CONTAINER_NAME = 'iteron-sandbox';
 export const DEFAULT_MEMORY = '16g';
 export const VOLUME_NAME = 'iteron-data';

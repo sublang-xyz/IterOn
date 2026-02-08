@@ -126,7 +126,7 @@ Remove a workspace directory and kill any running agent sessions in it.
 - Status: `podman ps | grep iteron-sandbox`
 - Shell in container: `podman exec -it iteron-sandbox bash`
 - Workspace contents: Navigate with shell once inside (e.g., `iteron open myproject` then `ls`)
-- Image update: `podman pull ghcr.io/sublang/iteron-sandbox:latest && iteron stop && iteron start`
+- Image update: `podman pull ghcr.io/sublang-dev/iteron-sandbox:latest && iteron stop && iteron start`
 
 ## Consequences
 

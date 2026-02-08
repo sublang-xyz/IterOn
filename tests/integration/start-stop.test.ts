@@ -8,7 +8,8 @@ import { tmpdir } from 'node:os';
 import { rm, mkdir } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 
-const TEST_IMAGE = 'docker.io/library/alpine:latest';
+// ITERON_TEST_IMAGE overrides the default image for CI against the real sandbox image.
+const TEST_IMAGE = process.env.ITERON_TEST_IMAGE ?? 'docker.io/library/alpine:latest';
 const TEST_CONTAINER = 'iteron-test-sandbox';
 
 let configDir: string;
@@ -128,8 +129,10 @@ describe.skipIf(!HAS_PODMAN)('iteron start/stop (integration)', { timeout: 120_0
 
   // IR-002 test 13: volume persistence
   it('persists data across restart via volume', async () => {
+    // Use a unique filename to avoid false-pass from stale volume state
+    const marker = `persist-test-${Date.now()}`;
     // Create a file in the volume
-    execFileSync('podman', ['exec', TEST_CONTAINER, 'touch', '/home/iteron/persist-test'], { stdio: 'ignore' });
+    execFileSync('podman', ['exec', TEST_CONTAINER, 'touch', `/home/iteron/${marker}`], { stdio: 'ignore' });
 
     // Stop
     const { stopCommand } = await import('../../src/commands/stop.js');
@@ -149,7 +152,7 @@ describe.skipIf(!HAS_PODMAN)('iteron start/stop (integration)', { timeout: 120_0
     await startCommand();
 
     // Verify file persists (test -f exits 0 if file exists, throws otherwise)
-    execFileSync('podman', ['exec', TEST_CONTAINER, 'test', '-f', '/home/iteron/persist-test'], { stdio: 'ignore' });
+    execFileSync('podman', ['exec', TEST_CONTAINER, 'test', '-f', `/home/iteron/${marker}`], { stdio: 'ignore' });
   });
 
   // IR-002 test 8: stop removes container

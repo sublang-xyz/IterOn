@@ -22,8 +22,8 @@ function podmanAvailable(): boolean {
 
 const HAS_PODMAN = podmanAvailable();
 
-// Use a small, fast image for integration tests
-const TEST_IMAGE = 'docker.io/library/alpine:latest';
+// ITERON_TEST_IMAGE overrides the default image for CI against the real sandbox image.
+const TEST_IMAGE = process.env.ITERON_TEST_IMAGE ?? 'docker.io/library/alpine:latest';
 
 beforeAll(() => {
   configDir = mkdtempSync(join(tmpdir(), 'iteron-init-test-'));

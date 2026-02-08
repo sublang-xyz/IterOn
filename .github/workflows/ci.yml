@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  packages: read
 
 jobs:
   build:
@@ -72,4 +73,31 @@ jobs:
         run: podman pull docker.io/library/alpine:latest
 
       - name: Run integration tests
+        run: npm run test:integration
+
+  test-integration-image:
+    runs-on: ubuntu-latest
+    needs: [build]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Log in to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+      - name: Pull sandbox image
+        run: podman pull ghcr.io/sublang-dev/iteron-sandbox:dev-latest
+
+      - name: Run integration tests against sandbox image
+        env:
+          ITERON_TEST_IMAGE: ghcr.io/sublang-dev/iteron-sandbox:dev-latest
         run: npm run test:integration

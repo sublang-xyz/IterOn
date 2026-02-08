@@ -13,7 +13,9 @@ Add automated unit and integration tests for the CLI utilities and container lif
 - [ ] Unit tests for `platform`, `config`, `podman`, and `git` utilities
 - [ ] Integration tests for `init`, `start`, `stop` with real Podman
 - [ ] CI: unit tests on Node 20/22, integration tests on Ubuntu with Podman
+- [ ] CI: integration tests against prebuilt sandbox image on Ubuntu
 - [ ] `ITERON_CONFIG_DIR` env var override for test isolation
+- [ ] `ITERON_TEST_IMAGE` env var override for CI against real sandbox image
 
 ## Tasks
 
@@ -83,17 +85,16 @@ export const CONFIG_DIR = process.env.ITERON_CONFIG_DIR ?? join(homedir(), '.ite
 - Env propagation — IR-002 test 12
 - Volume persistence across restart — IR-002 test 13
 
-Integration tests use 120s timeout and run sequentially (shared Podman state). Robust `afterAll` cleanup.
+Integration tests respect `ITERON_TEST_IMAGE` env var (defaults to `alpine:latest` for fast local runs). Use 120s timeout and run sequentially via `--fileParallelism=false` (shared Podman state). Robust `afterAll` cleanup.
 
 ### 5. CI updates
 
-Extend `.github/workflows/ci.yml` with three jobs:
+Extend `.github/workflows/ci.yml` with four jobs:
 
 - **build**: existing — `npm run build` on Node [18, 20, 22]
 - **test-unit**: parallel with build — `npm test` on Node [20, 22] (Vitest 4 requires Node >=20)
-- **test-integration**: after build — `npm run test:integration` on Ubuntu, Node 22 only (Podman pre-installed on GitHub Ubuntu runners)
-
-No macOS runner for integration (Podman not pre-installed, slow to set up). macOS-specific paths covered by unit tests with mocking.
+- **test-integration**: after build — `npm run test:integration` on Ubuntu, Node 22 only, `alpine:latest` (fast smoke test, Podman pre-installed)
+- **test-integration-image**: after build — `npm run test:integration` on Ubuntu, Node 22, with `ITERON_TEST_IMAGE=ghcr.io/sublang-dev/iteron-sandbox:dev-latest` (validates CLI against real sandbox image; macOS omitted because GitHub Actions runners lack nested virtualization for Podman machine)
 
 ## Verification
 
@@ -103,9 +104,10 @@ No macOS runner for integration (Podman not pre-installed, slow to set up). macO
 | 2 | `npm run test:integration` | All integration tests pass (requires Podman) |
 | 3 | `npm run build` | Compiles cleanly |
 | 4 | `npm run test:coverage` | Coverage report generated |
-| 5 | Push to branch and check CI | build, test-unit, test-integration jobs pass |
+| 5 | Push to branch and check CI | build, test-unit, test-integration, test-integration-image jobs pass |
 
 ## Dependencies
 
 - [IR-002](002-container-lifecycle.md) (commands must be implemented)
+- [IR-001](001-oci-sandbox-image.md) (sandbox image published to GHCR for image integration tests)
 - Podman installed locally for integration tests

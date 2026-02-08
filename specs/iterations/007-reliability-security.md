@@ -42,8 +42,8 @@ Per [DR-001 §1](../decisions/001-sandbox-architecture.md#1-oci-container-as-the
 
 ### 3. Vulnerability scan
 
-- Run Trivy on the OCI image: `trivy image ghcr.io/sublang/iteron-sandbox:<version>`
-- Run Grype as cross-check: `grype ghcr.io/sublang/iteron-sandbox:<version>`
+- Run Trivy on the OCI image: `trivy image ghcr.io/sublang-dev/iteron-sandbox:<version>`
+- Run Grype as cross-check: `grype ghcr.io/sublang-dev/iteron-sandbox:<version>`
 - Expected: no critical or high severity CVEs
 - Document any accepted medium/low CVEs with justification
 

@@ -52,7 +52,7 @@ Install each agent and verify its binary is on `PATH`:
 
 - Use `podman manifest` or `docker buildx` for multi-platform builds
 - Target: `linux/amd64`, `linux/arm64` (Graviton + Apple Silicon)
-- Tag convention: `ghcr.io/sublang/iteron-sandbox:<version>`
+- Tag convention: `ghcr.io/sublang-dev/iteron-sandbox:<version>`
 - Build script: `scripts/build-image.sh` wrapping the multi-arch build
 
 ### 4. Filesystem layout for security
