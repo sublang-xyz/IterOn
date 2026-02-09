@@ -108,7 +108,7 @@ export function formatTree(
   return lines.join('\n');
 }
 
-export async function lsCommand(options: { json?: boolean }): Promise<void> {
+export async function lsCommand(): Promise<void> {
   try {
     const config = await readConfig();
     const { name } = config.container;
@@ -144,15 +144,11 @@ export async function lsCommand(options: { json?: boolean }): Promise<void> {
       // No workspaces
     }
 
-    if (options.json) {
-      console.log(JSON.stringify(sessions, null, 2));
-    } else {
-      if (sessions.length === 0 && workspaces.length === 0) {
-        console.log('No workspaces or sessions.');
-        return;
-      }
-      console.log(formatTree(sessions, workspaces));
+    if (sessions.length === 0 && workspaces.length === 0) {
+      console.log('No workspaces or sessions.');
+      return;
     }
+    console.log(formatTree(sessions, workspaces));
   } catch (error) {
     console.error(`Error: ${podmanErrorMessage(error)}`);
     process.exit(1);

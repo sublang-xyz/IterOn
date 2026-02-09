@@ -53,7 +53,6 @@ Per [DR-002 §5](../decisions/002-iteron-cli-commands.md#5-iteron-ls):
   ```
 
 - Show status (attached/detached) and uptime for each session
-- `--json` flag: output JSON array with fields `session`, `command`, `location`, `attached`, `uptime_seconds`
 
 ### 3. `iteron rm <workspace>`
 
@@ -63,7 +62,6 @@ Per [DR-002 §6](../decisions/002-iteron-cli-commands.md#6-iteron-rm-workspace):
 - Remove workspace directory (`~/workspace`) inside container
 - Refuse to remove home directory (`~`) with clear error
 - Confirmation prompt listing sessions that will be killed
-- `--force` flag to skip confirmation
 
 ## Verification
 
@@ -78,11 +76,9 @@ Per [DR-002 §6](../decisions/002-iteron-cli-commands.md#6-iteron-rm-workspace):
 | 7 | Run `iteron open claude-code myproject`, detach (Ctrl-B D), run `iteron open claude-code myproject` again | Reattaches to same session; `tmux list-sessions` still shows exactly one `claude-code@myproject`. **Manual verification required** — `-A` reattach needs an interactive terminal. |
 | 8 | Run `iteron open claude-code ~` and `iteron open claude-code myproject` in parallel | Two separate sessions: `claude-code@~` and `claude-code@myproject` |
 | 9 | `iteron ls` with sessions `claude-code@~`, `bash@myproject`, `gemini-cli@backend` running | Tree output groups by location; shows correct attached/detached status and uptime |
-| 10 | `iteron ls --json` | Valid JSON; each entry has `session`, `command`, `location`, `attached` (bool), `uptime_seconds` (int) |
-| 11 | `iteron rm myproject` with `claude-code@myproject` running | Prompts "Kill claude-code@myproject? [y/N]"; on `y`: session killed, `~/myproject` removed |
-| 12 | `iteron rm myproject --force` | Skips prompt; session killed; directory removed |
-| 13 | `iteron rm` (no arg) | Exit non-zero; prints usage error |
-| 14 | `iteron open` when container not running | Exit non-zero; prints "Container iteron-sandbox is not running. Run `iteron start` first." |
+| 10 | `iteron rm myproject` with `claude-code@myproject` running | Prompts "Kill claude-code@myproject? [y/N]"; on `y`: session killed, `~/myproject` removed |
+| 11 | `iteron rm` (no arg) | Exit non-zero; prints usage error |
+| 12 | `iteron open` when container not running | Exit non-zero; prints "Container iteron-sandbox is not running. Run `iteron start` first." |
 
 ## Dependencies
 

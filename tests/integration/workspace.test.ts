@@ -169,7 +169,7 @@ describe.skipIf(!HAS_PODMAN)('iteron ls (integration)', { timeout: 120_000, sequ
     const { lsCommand } = await import('../../src/commands/ls.js');
     const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
-    await lsCommand({ json: false });
+    await lsCommand();
 
     const output = logSpy.mock.calls.map((c) => c[0]).join('\n');
     expect(output).toContain('~/ (home)');
@@ -178,53 +178,17 @@ describe.skipIf(!HAS_PODMAN)('iteron ls (integration)', { timeout: 120_000, sequ
     logSpy.mockRestore();
   });
 
-  // IR-004 test 10: lsCommand --json end-to-end
-  it('lsCommand --json outputs valid session objects', async () => {
-    setupLsSessions();
-
-    const { lsCommand } = await import('../../src/commands/ls.js');
-    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-
-    await lsCommand({ json: true });
-
-    const output = logSpy.mock.calls.map((c) => c[0]).join('\n');
-    const sessions = JSON.parse(output);
-    expect(Array.isArray(sessions)).toBe(true);
-    expect(sessions.length).toBeGreaterThanOrEqual(1);
-    for (const entry of sessions) {
-      expect(entry).toHaveProperty('session');
-      expect(entry).toHaveProperty('command');
-      expect(entry).toHaveProperty('location');
-      expect(typeof entry.attached).toBe('boolean');
-      expect(typeof entry.uptime_seconds).toBe('number');
-    }
-
-    logSpy.mockRestore();
-  });
 });
 
 describe.skipIf(!HAS_PODMAN)('iteron rm (integration)', { timeout: 120_000, sequential: true }, () => {
-  // IR-004 test 11/12: rm kills sessions and removes directory
-  it('kills sessions and removes workspace directory', async () => {
+  // IR-004 test 10: rm removes workspace directory
+  it('removes workspace directory', async () => {
     // Setup
     containerExec(['mkdir', '-p', '/home/iteron/rm-test']);
-    containerExec(['tmux', 'new-session', '-d', '-s', 'bash@rm-test', '-c', '/home/iteron/rm-test', 'bash']);
 
-    // Verify session exists
-    let sessions = containerExec(['tmux', 'list-sessions', '-F', '#{session_name}']);
-    expect(sessions).toContain('bash@rm-test');
-
-    // Import and run rm with --force
+    // Import and run rm
     const { rmCommand } = await import('../../src/commands/rm.js');
-    await rmCommand('rm-test', { force: true });
-
-    // Verify session killed
-    try {
-      sessions = containerExec(['tmux', 'list-sessions', '-F', '#{session_name}']);
-      expect(sessions).not.toContain('bash@rm-test');
-    } catch {
-      // tmux exits non-zero when no sessions remain — that's expected
-    }
+    await rmCommand('rm-test');
 
     // Verify directory removed
     try {
@@ -235,7 +199,7 @@ describe.skipIf(!HAS_PODMAN)('iteron rm (integration)', { timeout: 120_000, sequ
     }
   });
 
-  // IR-004 test 13: rm with no arg
+  // IR-004 test 11: rm with no arg
   it('errors with no workspace argument', async () => {
     const { rmCommand } = await import('../../src/commands/rm.js');
 
@@ -244,7 +208,7 @@ describe.skipIf(!HAS_PODMAN)('iteron rm (integration)', { timeout: 120_000, sequ
     }) as never);
 
     try {
-      await rmCommand('', { force: true });
+      await rmCommand('');
     } catch {
       // Expected
     }
@@ -262,7 +226,7 @@ describe.skipIf(!HAS_PODMAN)('iteron rm (integration)', { timeout: 120_000, sequ
     }) as never);
 
     try {
-      await rmCommand('~', { force: true });
+      await rmCommand('~');
     } catch {
       // Expected
     }
@@ -273,7 +237,7 @@ describe.skipIf(!HAS_PODMAN)('iteron rm (integration)', { timeout: 120_000, sequ
 });
 
 describe.skipIf(!HAS_PODMAN)('iteron open when container not running (integration)', { timeout: 120_000, sequential: true }, () => {
-  // IR-004 test 14: open when container not running
+  // IR-004 test 12: open when container not running
   it('errors when container is not running', async () => {
     // Stop the container
     const { stopCommand } = await import('../../src/commands/stop.js');

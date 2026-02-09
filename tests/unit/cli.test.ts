@@ -34,14 +34,14 @@ describe('CLI smoke tests', () => {
     expect(output).toContain('workspace');
   });
 
-  it('ls --help shows --json flag', () => {
+  it('ls --help shows command help', () => {
     const output = run(['ls', '--help']);
-    expect(output).toContain('--json');
+    expect(output).toContain('List workspaces and running sessions');
   });
 
-  it('rm --help shows --force flag', () => {
+  it('rm --help shows workspace argument', () => {
     const output = run(['rm', '--help']);
-    expect(output).toContain('--force');
+    expect(output).toContain('<workspace>');
   });
 
   it('unknown command exits non-zero', () => {

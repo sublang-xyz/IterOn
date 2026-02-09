@@ -53,14 +53,12 @@ program
 program
   .command('ls')
   .description('List workspaces and running sessions')
-  .option('--json', 'output as JSON')
   .action(lsCommand);
 
 program
   .command('rm')
   .description('Remove a workspace and kill its sessions')
   .argument('<workspace>', 'workspace to remove')
-  .option('--force', 'skip confirmation prompt')
   .action(rmCommand);
 
 program.parse();

@@ -22,7 +22,6 @@ function confirm(prompt: string): Promise<boolean> {
 
 export async function rmCommand(
   workspace: string,
-  options: { force?: boolean },
 ): Promise<void> {
   try {
     if (!workspace) {
@@ -64,17 +63,15 @@ export async function rmCommand(
       // No tmux server = no sessions
     }
 
-    // Confirmation prompt
-    if (!options.force) {
-      if (matchingSessions.length > 0) {
-        const sessionList = matchingSessions.join(', ');
-        const proceed = await confirm(
-          `Kill ${sessionList}? [y/N] `,
-        );
-        if (!proceed) {
-          console.log('Aborted.');
-          return;
-        }
+    // Confirmation prompt when active sessions would be killed
+    if (matchingSessions.length > 0) {
+      const sessionList = matchingSessions.join(', ');
+      const proceed = await confirm(
+        `Kill ${sessionList}? [y/N] `,
+      );
+      if (!proceed) {
+        console.log('Aborted.');
+        return;
       }
     }
 
