@@ -138,5 +138,6 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
-# Claude Code local settings
+# Claude Code local artifacts
 .claude/settings.local.json
+.claude/plans/

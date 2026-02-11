@@ -37,6 +37,16 @@ async function cleanup(): Promise<void> {
   try { execFileSync('podman', ['rm', '-f', TEST_CONTAINER], { stdio: 'ignore' }); } catch {}
 }
 
+/**
+ * Remove a temp dir that may contain Podman UID-remapped overlay files.
+ * Rootless Podman stores container data under $XDG_DATA_HOME/containers/;
+ * when tests redirect XDG_DATA_HOME to a temp dir, `podman unshare` is
+ * required to enter the user namespace and delete those files.
+ */
+function forceRmTempDir(dir: string): void {
+  try { execFileSync('podman', ['unshare', 'rm', '-rf', dir], { stdio: 'ignore' }); } catch {}
+}
+
 describe.skipIf(!HAS_PODMAN)('IR-005 headless auth (integration)', { timeout: 120_000, sequential: true }, () => {
   beforeAll(async () => {
     await cleanup();
@@ -86,7 +96,7 @@ binary = "opencode"
       process.env.XDG_DATA_HOME = origXdg;
     }
     if (configDir) await rm(configDir, { recursive: true, force: true });
-    if (xdgDataDir) await rm(xdgDataDir, { recursive: true, force: true });
+    if (xdgDataDir) forceRmTempDir(xdgDataDir);
   });
 
   // IR-005 test 1: CLAUDE_CODE_OAUTH_TOKEN propagates to container
@@ -155,6 +165,6 @@ binary = "opencode"
     const { stopCommand } = await import('../../src/commands/stop.js');
     await stopCommand();
 
-    await rm(emptyXdg, { recursive: true, force: true });
+    forceRmTempDir(emptyXdg);
   });
 });
