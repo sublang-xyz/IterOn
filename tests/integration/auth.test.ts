@@ -178,7 +178,7 @@ binary = "opencode"
     await startCommand();
 
     let exitCode: number | null = null;
-    let stderr = '';
+    let combined = '';
     try {
       execFileSync('podman', ['exec', TEST_CONTAINER, 'claude', '-p', 'echo hello'], {
         encoding: 'utf-8',
@@ -186,14 +186,14 @@ binary = "opencode"
       });
       exitCode = 0;
     } catch (err: unknown) {
-      const e = err as { status?: number; stderr?: string };
+      const e = err as { status?: number; stdout?: string; stderr?: string };
       exitCode = e.status ?? 1;
-      stderr = e.stderr ?? '';
+      combined = `${e.stdout ?? ''}\n${e.stderr ?? ''}`;
     }
 
     expect(exitCode).not.toBe(0);
     // Should show an auth-related error, not an onboarding prompt
-    const output = stderr.toLowerCase();
+    const output = combined.toLowerCase();
     expect(output).toMatch(/auth|token|api.key|unauthorized|credential|log.?in/);
     expect(output).not.toContain('onboarding');
 
