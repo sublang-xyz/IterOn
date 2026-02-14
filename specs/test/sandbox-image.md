@@ -185,59 +185,58 @@ successfully
 
 ### SBT-025
 
-Where the autonomous execution fixture is created and its oracle
-test is run before agent edits, the oracle shall fail
-([SBD-014](../dev/sandbox-image.md#sbd-014)).
+Where the autonomous execution fixture is created with a single
+deterministic known defect and a fixed oracle, when the oracle test
+is run before agent edits, the oracle shall fail.
 
 ### SBT-026
 
 Where autonomous execution validation runs for `claude` on a fresh
-fixture workspace, the agent run shall satisfy autonomous success
-criteria
-([SBD-015](../dev/sandbox-image.md#sbd-015),
-[SBD-016](../dev/sandbox-image.md#sbd-016)).
+isolated fixture workspace seeded from the fixture baseline, the
+agent command shall exit successfully within a bounded run time,
+the oracle test shall pass after the run, and captured output shall
+contain no interactive permission approval prompt.
 
 ### SBT-027
 
 Where autonomous execution validation runs for `codex` on a fresh
-fixture workspace, the agent run shall satisfy autonomous success
-criteria
-([SBD-015](../dev/sandbox-image.md#sbd-015),
-[SBD-016](../dev/sandbox-image.md#sbd-016),
-[SBD-018](../dev/sandbox-image.md#sbd-018)).
+isolated fixture workspace seeded from the fixture baseline with
+workspace trust preconditions satisfied, the agent command shall
+exit successfully within a bounded run time, the oracle test shall
+pass after the run, and captured output shall contain no
+interactive permission approval prompt.
 
 ### SBT-028
 
 Where autonomous execution validation runs for `gemini` on a fresh
-fixture workspace, the agent run shall satisfy autonomous success
-criteria
-([SBD-015](../dev/sandbox-image.md#sbd-015),
-[SBD-016](../dev/sandbox-image.md#sbd-016)).
+isolated fixture workspace seeded from the fixture baseline, the
+agent command shall exit successfully within a bounded run time,
+the oracle test shall pass after the run, and captured output shall
+contain no interactive permission approval prompt.
 
 ### SBT-029
 
 Where autonomous execution validation runs for `opencode` on a
-fresh fixture workspace, the agent run shall satisfy autonomous
-success criteria
-([SBD-015](../dev/sandbox-image.md#sbd-015),
-[SBD-016](../dev/sandbox-image.md#sbd-016)).
+fresh isolated fixture workspace seeded from the fixture baseline,
+the agent command shall exit successfully within a bounded run
+time, the oracle test shall pass after the run, and captured output
+shall contain no interactive permission approval prompt.
 
 ### SBT-030
 
 Where autonomous execution diagnostics are emitted, diagnostic
 output shall not contain literal values of configured
-authentication secrets
-([SBD-017](../dev/sandbox-image.md#sbd-017)).
+authentication secrets.
 
 ### SBT-031
 
 Where an agent completes an autonomous repair run on the fixture,
-fixture oracle definitions shall remain unchanged after the run
-([SBD-019](../dev/sandbox-image.md#sbd-019)).
+fixture oracle definitions shall remain unchanged after the run,
+verifying the task contract preserves oracle definitions while
+repairing the known defect under test.
 
 ### SBT-032
 
 Where an autonomous agent run fails an autonomous success
 criterion, emitted failure diagnostics shall include the run exit
-status and a bounded excerpt of captured run output
-([SBD-020](../dev/sandbox-image.md#sbd-020)).
+status and a bounded excerpt of captured run output.
