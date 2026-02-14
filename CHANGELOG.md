@@ -1,5 +1,5 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
-<!-- SPDX-FileCopyrightText: 2025 SubLang International <https://www.sublang.ai> -->
+<!-- SPDX-FileCopyrightText: 2025 SubLang International <https://sublang.ai> -->
 
 # Changelog
 
@@ -43,7 +43,7 @@ Major release completing iterations IR-001 through IR-004, bringing full sandbox
 ### Changed
 
 - **BREAKING:** Renamed `iteron init` command to `iteron scaffold` to reserve `init` for future full project initialization
-- Updated copyright URL to www.sublang.ai in SPDX headers
+- Updated copyright URL to sublang.ai in SPDX headers
 - Updated AI co-author email to cligent@sublang.ai in git spec
 
 ## [0.1.1] - 2025-01-14

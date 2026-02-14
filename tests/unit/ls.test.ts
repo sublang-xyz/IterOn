@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.ai>
+// SPDX-FileCopyrightText: 2026 SubLang International <https://sublang.ai>
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { parseSessions, formatUptime, formatTree } from '../../src/commands/ls.js';

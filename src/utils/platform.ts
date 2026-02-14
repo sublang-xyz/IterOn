@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// SPDX-FileCopyrightText: 2026 SubLang International <https://www.sublang.ai>
+// SPDX-FileCopyrightText: 2026 SubLang International <https://sublang.ai>
 
 import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';

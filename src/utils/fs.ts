@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// SPDX-FileCopyrightText: 2025 SubLang International <https://www.sublang.ai>
+// SPDX-FileCopyrightText: 2025 SubLang International <https://sublang.ai>
 
 import { mkdir, copyFile, readdir, readFile, appendFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
