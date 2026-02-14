@@ -19,7 +19,7 @@ Verify that each agent can complete a real coding task autonomously — no permi
 
 Create a minimal Node.js project inside the container (Node.js is available from the base image):
 
-```
+```shell
 ~/test-fixture/
   package.json
   src/calc.js
@@ -27,17 +27,20 @@ Create a minimal Node.js project inside the container (Node.js is available from
 ```
 
 **`package.json`**:
+
 ```json
 { "scripts": { "test": "node tests/test_calc.js" } }
 ```
 
 **`src/calc.js`** (contains intentional bug):
+
 ```javascript
 function add(a, b) { return a - b; }
 module.exports = { add };
 ```
 
 **`tests/test_calc.js`**:
+
 ```javascript
 const assert = require('assert');
 const { add } = require('../src/calc');
